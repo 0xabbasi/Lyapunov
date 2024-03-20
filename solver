@@ -1,0 +1,24 @@
+import numpy as np
+from scipy.linalg import solve_continuous_lyapunov
+
+def solve_lyapunov(A, Q):
+    """
+    Solves the continuous-time Lyapunov equation A*X + X*A.T = -Q for X.
+    
+    Parameters:
+        A (array_like): The matrix A in the Lyapunov equation.
+        Q (array_like): The matrix Q in the Lyapunov equation.
+
+    Returns:
+        X (ndarray): The solution to the Lyapunov equation.
+    """
+    X = solve_continuous_lyapunov(A, -Q)
+    return X
+
+# Example usage:
+if __name__ == "__main__":
+    A = np.array([[1, -1], [2, -3]])
+    Q = np.array([[1, 0], [0, 1]])
+    X = solve_lyapunov(A, Q)
+    print("Solution X:")
+    print(X)
